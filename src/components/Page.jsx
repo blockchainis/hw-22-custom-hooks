@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
 function Page() {
   const [count, setCount] = useState(0);
-  const [delay, setDelay] = useState(1000);
+  const [delay, setDelay] = useState(1);
+  //원래 delay 1 -> 0.5
+  //1.버튼을 누르면 delay를 바꾸게 한다.
+  //2.바뀐 delay만큼 타이머를 걸어준다.
   useEffect(() => {
     const id = setInterval(() => {
-      setCount((count) => count + 1);
-    }, 1000);
+      setCount(count => count + delay);
+    }, delay * 1000);
     return () => {
       clearInterval(id);
     };
-  }, []);
+  }, [delay]);
+
   const seconds = [0.5, 1, 3, 5];
+
   return (
     <>
       <p>안녕하세요</p>
@@ -18,7 +23,7 @@ function Page() {
       <div>
         <h3>타이머의 간격이 바뀌도록 하세요</h3>
         {seconds.map((s) => (
-          <button>{s}</button>
+          <button onClick={() => setDelay(s)}>{s}</button>
         ))}
       </div>
       <p>
