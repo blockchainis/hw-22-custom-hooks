@@ -7,7 +7,7 @@ function Page() {
   //2.바뀐 delay만큼 타이머를 걸어준다.
   useEffect(() => {
     const id = setInterval(() => {
-      setCount(count => count + delay);
+      setCount((count) => count + delay);
     }, delay * 1000);
     return () => {
       clearInterval(id);
